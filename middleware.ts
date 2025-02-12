@@ -50,7 +50,7 @@ export default auth ((req) => {
 
       const encodeCallbackUrl = encodeURIComponent(callbackUrl)
 
-      return Response.redirect(new URL(`/auth/login?callbackUrl=${encodeCallbackUrl}`, nextUrl))
+      return Response.redirect(new URL(`/login?callbackUrl=${encodeCallbackUrl}`, nextUrl))
     }
 
   

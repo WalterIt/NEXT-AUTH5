@@ -6,6 +6,9 @@
 .pnp.js
 .yarn/install-state.gz
 
+# mysql-database
+/mysql-data
+
 # testing
 /coverage
 

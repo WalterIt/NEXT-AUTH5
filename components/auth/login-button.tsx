@@ -30,7 +30,7 @@ if (mode === "modal") {
 }
 
 function handleClick() {
-    router.push("/auth/login")
+    router.push("/login")
 }
 
   return (

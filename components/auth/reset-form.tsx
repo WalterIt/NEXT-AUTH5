@@ -42,7 +42,7 @@ export const ResetForm = () => {
     }
 
     return (
-       <CardWrapper headerLabel="Reset Password" backButtonLabel="Back To Login" backButtonHref="/auth/login">
+       <CardWrapper headerLabel="Reset Password" backButtonLabel="Back To Login" backButtonHref="/login">
             <Form {...form}>
                 <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="space-y-4">
