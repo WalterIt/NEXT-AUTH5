@@ -3,7 +3,7 @@
 import * as z from "zod"
 import { RegisterSchema } from "@/schemas";
 import bcrypt from "bcryptjs"
-import { db } from "@/lib/db";
+import {db} from "@/lib/db";
 import { getUserByEmail } from "@/data/data";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
@@ -22,6 +22,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     if (existingUser) {
         return { error: "Email Already Exists!" }
     }
+
 
     await db.user.create({
         data: {

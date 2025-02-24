@@ -16,7 +16,7 @@ export const sendTwoFactorToken = async (email: string, token: string) => {
 
 
 export const sendResetPasswordEmail = async (email: string, token: string) => {
-    const resetLink = `${laman}/auth/new-password?token=${token}`
+    const resetLink = `${laman}/new-password?token=${token}`
 
     await resend.emails.send({
         from : "onboarding@resend.dev",
@@ -27,7 +27,7 @@ export const sendResetPasswordEmail = async (email: string, token: string) => {
 }
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-    const confirmLink = `${laman}/auth/new-verification?token=${token}`
+    const confirmLink = `${laman}/new-verification?token=${token}`
 
     await resend.emails.send({
         from : "onboarding@resend.dev",

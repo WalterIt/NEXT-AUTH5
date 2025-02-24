@@ -17,7 +17,7 @@ import Link from "next/link";
 
 
 export const LoginForm = () => {
-    const searchParams = useSearchParams()
+    const searchParams = useSearchParams();
     const callbackUrl = searchParams.get("callbackUrl")
     // const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Something went wrong!!" : "";
     const [isTwoFactor,setTwoFactor] = useState(false)
