@@ -19,7 +19,7 @@ import Link from "next/link";
 export const LoginForm = () => {
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get("callbackUrl")
-    // const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Something went wrong!!" : "";
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email Already in use with a different Provider!!" : "";
     const [isTwoFactor,setTwoFactor] = useState(false)
     const [error,setError] = useState<string | undefined>("")
     const [success,setSuccess] = useState<string | undefined>("")
@@ -141,7 +141,7 @@ export const LoginForm = () => {
                         )}
 
                     </div>
-                        <FormError message={error} />
+                        <FormError message={error || urlError} />
                         <FormSuccess message={success} />
                         {/* <FormSuccess message="Login Successful!" /> */}
                         <Button

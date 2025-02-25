@@ -2,7 +2,7 @@ import { Resend }from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const laman = process.env.NEXT_PUBLIC_APP
+const laman = process.env.NEXT_PUBLIC_APP_URL
 
 
 export const sendTwoFactorToken = async (email: string, token: string) => {
