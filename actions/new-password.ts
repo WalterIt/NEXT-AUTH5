@@ -21,7 +21,7 @@ export const newPassword = async (values: z.infer<typeof NewPasswordSchema>, tok
     if(!existingToken) return {error : "Invalid Token!"}
 
     const existingUser = await getUserByEmail(existingToken.email)
-    if(!existingUser) return { error: "Email Doesn't Exist" }
+    if(!existingUser) return { error: "Email Doesn't Exist!" }
 
     await db.user.update({
         where : {id : existingUser.id},

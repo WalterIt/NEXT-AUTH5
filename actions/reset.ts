@@ -10,7 +10,7 @@ import { sendResetPasswordEmail } from "@/lib/mail";
 export const reset = async (values : z.infer<typeof ResetSchema>) => {
     const validateFields = ResetSchema.safeParse(values)
 
-    console.log(validateFields);
+    // console.log(validateFields);
     
     
     if (!validateFields.success) {
@@ -26,7 +26,6 @@ export const reset = async (values : z.infer<typeof ResetSchema>) => {
 
 
 
-    // TODO
 
     const resetPasswordToken = await generateResetPasswordToken(email)
     await sendResetPasswordEmail(resetPasswordToken.email, resetPasswordToken.token)
