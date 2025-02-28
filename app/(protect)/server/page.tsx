@@ -8,7 +8,7 @@ const Server = async () => {
     
 
   return (
-    <UserInfo label='Server Component' user={user} />
+    <UserInfo label='💻 Server Component' user={user} />
   )
 }
 

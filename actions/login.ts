@@ -37,12 +37,12 @@ export const login = async (values : z.infer<typeof LoginSchema>, callbackUrl?: 
             const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email)
             if(!twoFactorToken) return { error : "Invalid Code!" }
 
-            if(twoFactorToken.token !== code) return { error : "Code Is Wrong" }
+            if(twoFactorToken.token !== code) return { error : "Code Is Wrong!" }
 
             const hasExpired = new Date(twoFactorToken.expires) < new Date()
 
             if(hasExpired) {
-                return { error : "Code Has Expired" }
+                return { error : "Code Has Expired!" }
             }
 
             await db.twoFactorToken.delete({

@@ -54,7 +54,7 @@ export const LoginForm = () => {
                         setTwoFactor(true)
                     }
                 })
-                .catch(() => setError("Something Went Wrong"))
+                .catch(() => setError("Something Went Wrong!"))
         }) 
     }
 

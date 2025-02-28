@@ -32,7 +32,6 @@ export const {
 
       // console.log({user, account})
 
-
       if (account?.provider !== "credentials") return true;
 
       const existingUser = await getUserById(user.id);
@@ -58,12 +57,11 @@ export const {
         session.user.id = token.sub
       }
 
-      console.log({SessionToken: session});
+      // console.log({SessionToken: session});
       
       if(token.role && session.user) {
         session.user.role = token.role as UserRole
-      }
-      
+      }      
 
       if(session.user) {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean
@@ -80,7 +78,7 @@ export const {
     async jwt({token}) {
       if(!token.sub) return token;
 
-      console.log(token)
+      // console.log(token)
 
       const existingUser = await getUserById(token.sub);
       if(!existingUser) return token;

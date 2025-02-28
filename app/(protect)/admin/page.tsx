@@ -7,19 +7,30 @@ import { Card,CardContent,CardHeader } from '@/components/ui/card';
 import { UserRole } from '@prisma/client';
 import { toast } from 'sonner';    
 import React from 'react'
+import { admin } from '@/actions/admin';
 
 const AdminPage = () => {
 
     function onClickServerAction() {
-        fetch('/api/admin')
+        admin()
             .then((res) => {
-                if(res.ok) {
+                if(res.success) {
                     toast.success("Server Action Allowed!")
                 } else {
                     toast.error("Server Action Denied!")
                 }
             })
     }
+    // function onClickServerAction() {
+    //     fetch('/api/admin')
+    //         .then((res) => {
+    //             if(res.ok) {
+    //                 toast.success("Server Action Allowed!")
+    //             } else {
+    //                 toast.error("Server Action Denied!")
+    //             }
+    //         })
+    // }
 
     function onClickApiRoute() {
         fetch('/api/admin')
@@ -34,13 +45,13 @@ const AdminPage = () => {
 
 
   return (
-    <Card className='w-[600px]'>
+    <Card className='w-[600px]'> 
         <CardHeader>
             <p className='text-2xl text-center font-bold'>🔑 Admin</p>
         </CardHeader>
         <CardContent>
             <RoleGate allowedRole={UserRole.ADMIN}>
-                <FormSuccess message='You have permission to access this content' />
+                <FormSuccess message='You have permission to access this content!' />
             </RoleGate>
             <div className='flex border flex-row p-3 rounded-lg shadow-md items-center justify-between mt-4'>
                 <p className='font-semibold'>Admin-only API Route</p>
