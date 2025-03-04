@@ -11,8 +11,8 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { login } from "@/actions/login";
-import { useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 
@@ -24,6 +24,15 @@ export const LoginForm = () => {
     const [error,setError] = useState<string | undefined>("")
     const [success,setSuccess] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
+    // const router = useRouter();
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     router.refresh();
+  //   }, 1000); // Refresh every 5 seconds
+
+  //   // return () => clearInterval(interval);
+  // }, [router]);
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),

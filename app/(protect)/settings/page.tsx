@@ -50,14 +50,14 @@ const SettingPage = () => {
             setSuccess(data.success)
           }
         })
-        .catch(() => setError("Something Went Wrong"))
+        .catch(() => setError("Something Went Wrong!"))
     })
   }
 
   return (
     <Card className='w-[600px]'>
       <CardHeader>
-        <p className='text-2xl text-center font-bold'>🔑 Settings</p>
+        <p className='text-2xl text-center font-bold'>⚙️ Settings</p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -192,7 +192,7 @@ const SettingPage = () => {
             </div>
             <FormSuccess message={success} />
             <FormError message={error} />
-            <Button type='submit' disabled={isPending}>Save</Button>
+            <Button type='submit' disabled={isPending}>{isPending ? "Saving..." : 'Save'}</Button>
           </form>
         </Form>
       </CardContent>

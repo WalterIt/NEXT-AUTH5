@@ -27,17 +27,7 @@ export const settings = async (values : z.infer<typeof SettingsSchema>) => {
         values.isTwoFactorEnabled = undefined
     }
 
-    if (values.email && values.email !== user.email) {
-        const existingUser = await getUserByEmail(values.email)
-        if(existingUser && existingUser.id !== user.id) {
-            return {error : "Email Already Exists!!"}
-        }
-        const verificationToken = await generateVerificationToken(values.email)
-        await sendVerificationEmail(verificationToken.email, verificationToken.token)
-
-        return {success : "Confirmation Email Sent"}
-    }
-
+    
 
     if (values.password && values.newPassword && dbUser.password) {
         const passwordMatch = await bcrypt.compare(values.password, dbUser.password)
@@ -51,6 +41,19 @@ export const settings = async (values : z.infer<typeof SettingsSchema>) => {
         values.newPassword = undefined
     }
 
+    // if(values.password !== values.newPassword) return {error : "Passwords Don't Match!"}
+
+    if (values.email && values.email !== user.email) {
+        const existingUser = await getUserByEmail(values.email)
+        if(existingUser && existingUser.id !== user.id) {
+            return {error : "Email Already Exists!!"}
+        }
+        const verificationToken = await generateVerificationToken(values.email)
+        await sendVerificationEmail(verificationToken.email, verificationToken.token)
+
+        return {success : "Confirmation Email Sent!"}
+    }
+
 
      await db.user.update({
         where : {id : dbUser.id},
@@ -60,5 +63,5 @@ export const settings = async (values : z.infer<typeof SettingsSchema>) => {
     })
 
 
-    return {success : "Settings Updated"}
+    return {success : "Settings Updated!"} 
 }

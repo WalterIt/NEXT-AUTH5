@@ -19,7 +19,7 @@ export const SettingsSchema = z.object({
         }
         return true
     }, {
-        message : "New Password is required",
+        message : "New Password is required!",
         path : ["newPassword"]
     })
 
@@ -29,7 +29,7 @@ export const SettingsSchema = z.object({
         }
         return true
     }, {
-        message : "Password is required",
+        message : "Password is required!",
         path : ["password"]
     })
 
