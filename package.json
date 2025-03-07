@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "nextjs-auth",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,8 +14,8 @@
     "db:seed": "tsx ./scripts/seed.ts"
   },
   "dependencies": {
-    "@auth/core": "^0.31.0",
-    "@auth/prisma-adapter": "^1.5.2",
+    "@auth/core": "^0.38.0",
+    "@auth/prisma-adapter": "^2.8.0",
     "@clerk/backend": "^1.2.3",
     "@clerk/nextjs": "^5.1.5",
     "@hono/auth-js": "^1.0.7",
@@ -48,7 +48,7 @@
     "drizzle-zod": "^0.5.1",
     "hono": "^4.3.9",
     "lucide-react": "^0.379.0",
-    "next": "^14.2.1-canary.3",
+    "next": "^15.2.1",
     "next-auth": "^5.0.0-beta.16",
     "next-themes": "^0.3.0",
     "pg": "^8.11.5",
@@ -83,9 +83,9 @@
     "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.0.1",
     "dotenv": "^16.4.5",
-    "drizzle-kit": "^0.20.17",
+    "drizzle-kit": "^0.18.1",
     "eslint": "^8",
-    "eslint-config-next": "14.1.4",
+    "eslint-config-next": "^15.2.1",
     "postcss": "^8",
     "prisma": "^6.3.1",
     "tailwindcss": "^3.3.0",
