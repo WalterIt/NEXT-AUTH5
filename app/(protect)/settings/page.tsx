@@ -3,7 +3,7 @@
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SettingsSchema } from '@/schemas'
-import React, { useState, useTransition } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -17,13 +17,22 @@ import { FormError } from '@/components/form-error'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { UserRole } from '@prisma/client'
 import { Switch } from '@/components/ui/switch'
+import { useRouter } from 'next/navigation'
 
 const SettingPage = () => {
   const user = useCurrentUser()
+  const router = useRouter()
   const [success, setSuccess] = useState<string | undefined>()
   const [error, setError] = useState<string | undefined>()
   const { update } = useSession()
   const [isPending, startTransition] = useTransition()
+
+
+  useEffect(() => {
+    localStorage.clear() // Clear local storage
+    sessionStorage.clear() 
+    router.refresh()
+  }, [router, user])
 
 
   const form = useForm<z.infer<typeof SettingsSchema>>({

@@ -24,15 +24,7 @@ export const LoginForm = () => {
     const [error,setError] = useState<string | undefined>("")
     const [success,setSuccess] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
-    // const router = useRouter();
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     router.refresh();
-  //   }, 1000); // Refresh every 5 seconds
-
-  //   // return () => clearInterval(interval);
-  // }, [router]);
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@/components/auth/user-button'
 
-const Navbar = () => {
+const Navbar = ({user}: {user : any}) => {
     const pathname = usePathname()
 
   return (
@@ -21,14 +21,14 @@ const Navbar = () => {
             </Button>
 
             <Button variant={pathname === "/admin" ? "default" : "outline"} asChild>
-                <Link href="/admin">Admin</Link>
+                <Link href="/admin">Admin</Link> 
             </Button>
 
             <Button variant={pathname === "/settings" ? "default" : "outline"} asChild>
                 <Link href="/settings">Settings</Link>
             </Button>
         </div>
-        <UserButton />
+        <UserButton user={user} />
     </div>
   )
 }

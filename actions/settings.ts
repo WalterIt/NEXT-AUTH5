@@ -9,6 +9,7 @@ import { getUserByEmail, getUserById } from "@/data/data"
 import { generateVerificationToken } from "@/lib/tokens"
 import { sendVerificationEmail } from "@/lib/mail"
 import { useSession } from "next-auth/react"
+import { revalidatePath } from "next/cache"
 
 export const settings = async (values : z.infer<typeof SettingsSchema>) => {
     const user = await currentUser()
@@ -29,18 +30,6 @@ export const settings = async (values : z.infer<typeof SettingsSchema>) => {
 
     
 
-    if (values.password && values.newPassword && dbUser.password) {
-        const passwordMatch = await bcrypt.compare(values.password, dbUser.password)
-
-        if (!passwordMatch) {
-            return {error : "Incorrect Password"}
-        }
-
-        const hashNewPassword = await bcrypt.hash(values.newPassword, 10)
-        values.password = hashNewPassword
-        values.newPassword = undefined
-    }
-
     // if(values.password !== values.newPassword) return {error : "Passwords Don't Match!"}
 
     if (values.email && values.email !== user.email) {
@@ -55,12 +44,33 @@ export const settings = async (values : z.infer<typeof SettingsSchema>) => {
     }
 
 
-     await db.user.update({
+    if (values.password && values.newPassword && dbUser.password) {
+        const passwordMatch = await bcrypt.compare(values.password, dbUser.password)
+
+        if (!passwordMatch) {
+            return {error : "Incorrect Password!"}
+        }
+
+        const hashNewPassword = await bcrypt.hash(values.newPassword, 10)
+        values.password = hashNewPassword
+        values.newPassword = undefined
+    }
+
+
+    await db.user.update({
         where : {id : dbUser.id},
         data: {
             ...values
         }
     })
+
+
+    revalidatePath("/");
+    revalidatePath("/login");
+    revalidatePath("/server");
+    revalidatePath("/client");
+    revalidatePath("/admin");
+    revalidatePath("/settings");
 
 
     return {success : "Settings Updated!"} 

@@ -28,7 +28,7 @@ export default auth ((req) => {
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname)
 
     if (isApiRoutes) {
-      return
+      return NextResponse.next();
     }
     
   
@@ -36,15 +36,9 @@ export default auth ((req) => {
       if(isLoggedIn) {
         return Response.redirect(new URL(DEFAULT_REDIRECT_ROUTES, nextUrl))
       }
-      return
+      return NextResponse.next();
     }
 
-    // if(isPublicRoutes) {
-    //   if(isLoggedIn) { 
-    //     return NextResponse.redirect(new URL(DEFAULT_REDIRECT_ROUTES, nextUrl))
-    //   }
-    //   return
-    // }
       
     if ( !isLoggedIn && !isPublicRoutes ) {
       let callbackUrl = nextUrl.pathname

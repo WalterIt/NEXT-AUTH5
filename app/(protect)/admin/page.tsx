@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Card,CardContent,CardHeader } from '@/components/ui/card';
 import { UserRole } from '@prisma/client';
 import { toast } from 'sonner';    
-import React from 'react'
 import { admin } from '@/actions/admin';
 
 const AdminPage = () => {
@@ -21,16 +20,8 @@ const AdminPage = () => {
                 }
             })
     }
-    // function onClickServerAction() {
-    //     fetch('/api/admin')
-    //         .then((res) => {
-    //             if(res.ok) {
-    //                 toast.success("Server Action Allowed!")
-    //             } else {
-    //                 toast.error("Server Action Denied!")
-    //             }
-    //         })
-    // }
+
+        
 
     function onClickApiRoute() {
         fetch('/api/admin')
