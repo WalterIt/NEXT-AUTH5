@@ -21,8 +21,8 @@ export default async function RootLayout({
 
   return (
     <SessionProvider session={session}>
-    <html lang="en">
-      <body className={`bg-gradient-to-b from-sky-600 to-sky-300 ${poppin.className}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`bg-gradient-to-b from-sky-600 to-sky-300 ${poppin.className}`} suppressHydrationWarning >
         <Toaster />
         {children}
       </body>
