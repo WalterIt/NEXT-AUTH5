@@ -1,5 +1,3 @@
-
-
 import NextAuth from "next-auth"
 import authConfig from "./auth.config"
 import { PrismaAdapter } from "@auth/prisma-adapter"
@@ -71,6 +69,7 @@ export const {
         session.user.email = token.email as string
         session.user.name = token.name as string
         session.user.image = token.image as string
+        session.user.role = token.role as UserRole
         session.user.isOauth = token.isOauth as boolean
       }
 

@@ -1,9 +1,9 @@
 import { UserInfo } from '@/components/user-info'
 import React from 'react'
-import { useUserInfo } from '@/hooks/user-info'
+import { userInfo } from '@/actions/user-info'
 
 const Server = async () => {
-    const user = await useUserInfo()
+    const user = await userInfo()
     // console.log(user);
     
 

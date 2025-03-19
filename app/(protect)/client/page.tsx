@@ -1,11 +1,9 @@
-
-
+import { userInfo } from '@/actions/user-info'
 import { UserInfo } from '@/components/user-info'
 import React from 'react'
-import { useUserInfo } from '@/hooks/user-info'
 
 const Server = async  () => {
-    const user = await useUserInfo()
+    const user = await userInfo() 
 
   return (
     <UserInfo label='📱 Client Component' user={user} />

@@ -2,7 +2,7 @@
 
 import { useCurrentRole } from '@/hooks/use-current-role'
 import { UserRole } from '@prisma/client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormError } from '../form-error'
 
 interface RoleGateProps {
@@ -11,8 +11,14 @@ interface RoleGateProps {
 }
 
 const RoleGate = ({children, allowedRole} : RoleGateProps) => {
+    const [role, setRole] = useState<UserRole | undefined>(undefined);
+    const currentRole = useCurrentRole();
 
-    const role = useCurrentRole()
+    useEffect(() => {
+        setRole(currentRole as UserRole)
+    }, [currentRole])
+
+    // const role = useCurrentRole()
 
     if(role !== allowedRole) {
         return (
